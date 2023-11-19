@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Traffic Data</title>
+</head>
+<body>
+    <h1>Get Traffic Data</h1>
+    <button onclick="getData()">Get Data</button>
+    <div id="result"></div>
+
+    <script>
+        function getData() {
+            fetch('/get_traffic_data')  // 发送 GET 请求到 /get_traffic_data 端点
+                .then(response => response.json())  // 解析返回的 JSON 数据
+                .then(data => {
+                    const resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';  // 在页面上显示返回的数据
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
